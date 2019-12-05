@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
   name: 'create',
   data() {
@@ -30,19 +29,15 @@ export default {
     toggleForm() {
       this.creating = !this.creating;
     },
-    async addStory() {
-      try {
-        await axios.post("/api/stories", {
-          name: this.addedName,
-          problem: this.addedProblem
-        });
-        this.addedName = "";
-        this.addedProblem = "";
-        this.creating = false;
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    addStory() {
+      this.$store.dispatch("addStory", {
+        name: this.addedName,
+        problem: this.addedProblem
+      });
+      this.addedName = "";
+      this.addedProblem = "";
+      this.creating = false;
+    }
   }
 }
 </script>
