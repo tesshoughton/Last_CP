@@ -13,37 +13,41 @@ const storySchema = new mongoose.Schema({
 
 const Story = mongoose.model('Story', storySchema);
 
-router.get('/', async (req, res) => {
+router.get('/', async(req, res) => {
   try {
     let stories = await Story.find();
     return res.send(stories);
-  } catch (error) {
+  }
+  catch (error) {
     console.log(error);
     return res.sendStatus(500);
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async(req, res) => {
   const story = new Story({
     name: req.body.name,
-    problem: req.body.problem
+    problem: req.body.problem,
+    taggedWords: req.body.taggedWords
   });
   try {
     await story.save();
     return res.send(story);
-  } catch (error) {
+  }
+  catch (error) {
     console.log(error);
     return res.sendStatus(500);
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async(req, res) => {
   try {
     await Story.deleteOne({
       _id: req.params.id
     });
     return res.sendStatus(200);
-  } catch (error) {
+  }
+  catch (error) {
     console.log(error);
     return res.sendStatus(500);
   }
