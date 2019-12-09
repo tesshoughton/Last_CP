@@ -22,7 +22,8 @@
     name: 'home',
     data() {
       return {
-        stories: []
+        stories: [],
+        tagSearch: ""
       };
     },
     created() {
@@ -30,6 +31,9 @@
     },
     computed: {
       foundStories() {
+        if (this.tagSearch == "") {
+          return this.stories;
+        }
         let found = [];
         for (var i = 0; i < this.stories.length; i++) {
           if (this.stories[i].taggedWords.includes(this.tagSearch)) {
