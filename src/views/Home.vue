@@ -17,20 +17,26 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'home',
-  data(){
+  data() {
     return {
-      tagSearch: "",
-    };
-  },
-  computed: {
-    stories() {
-      return this.$store.state.stories.filter(story => story.taggedWords.find(this.tagSearch));
+      stories: []
     }
   },
   created() {
-    this.$store.dispatch("getStories");
+    this.getStories();
+  },
+  methods: {
+    async getStories() {
+      try {
+        let response = await axios.get("/api/stories");
+        this.stories = response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }
 }
 </script>

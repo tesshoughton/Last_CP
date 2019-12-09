@@ -16,44 +16,50 @@
 </template>
 
 <script>
-  export default {
-    name: 'create',
-    data() {
-      return {
-        creating: true,
-        addedName: '',
-        addedProblem: '',
-        words: [],
-        taggedWords: [],
-      };
+import axios from 'axios';
+export default {
+  name: 'create',
+  data() {
+    return {
+      creating: true,
+      addedName: '',
+      addedProblem: '',
+      words: [],
+      taggedWords: [],
+    }
+  },
+  methods: {
+    toggleForm() {
+      this.creating = !this.creating;
     },
-    methods: {
-      toggleForm() {
-        this.creating = !this.creating;
-      },
-      parseStory() {
-        this.taggedWords = [];
-        this.words = this.addedProblem.split(" ");
-        var i;
-        for (i = 0; i < this.words.length; i++) {
-          if (this.words[i].charAt(0) == '#') {
-            this.taggedWords.push(this.words[i]);
-          }
+    parseStory() {
+      this.taggedWords = [];
+      this.words = this.addedProblem.split(" ");
+      var i;
+      for (i = 0; i < this.words.length; i++) {
+        if (this.words[i].charAt(0) == '#') {
+          this.taggedWords.push(this.words[i]);
         }
-      },
-      addStory() {
-        this.parseStory();
-        this.$store.dispatch("addStory", {
+      }
+    },
+    async addStory() {
+      this.parseStory();
+      try {
+        await axios.post("/api/stories", {
           name: this.addedName,
           problem: this.addedProblem,
           taggedWords: this.taggedWords
         });
         this.addedName = "";
         this.addedProblem = "";
+        this.taggedWords = [];
         this.creating = false;
+      } catch (error) {
+        console.log(error);
       }
-    }
+    },
   }
+}
 </script>
 
 <style scoped>

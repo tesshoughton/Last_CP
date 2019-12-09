@@ -9,6 +9,7 @@ const router = express.Router();
 const storySchema = new mongoose.Schema({
   name: String,
   problem: String,
+  taggedWords: []
 });
 
 const Story = mongoose.model('Story', storySchema);
