@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Shared Stories</h1>
-  <form>Filter by Tag: <input type="text" name="tagSearch"/></form>
+  <form>Filter by Tag: <input type="text" v-model="tagSearch"/></form>
   <div class="stories" v-if="foundStories.length > 0">
     <div v-for="story in foundStories" v-bind:key="story._id">
       <hr>
