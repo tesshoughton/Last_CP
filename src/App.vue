@@ -1,6 +1,7 @@
 <template>
 <div id="app">
   <div class="header">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
     <h1>Tell Your Story</h1>
     <div id="nav">
       <router-link to="/">Home</router-link> |
@@ -20,7 +21,7 @@ body {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Special Elite', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
