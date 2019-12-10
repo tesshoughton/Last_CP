@@ -12,6 +12,12 @@
   <div class="content">
     <router-view />
   </div>
+  <div class="footer">
+    <p>
+      Page owned and created by JT, Logan, and Tess, 2019. *
+      <a href="https://github.com/tesshoughton/last_cp">GitHub Repo</a>
+    </p>
+  </div>
 </div>
 </template>
 
@@ -30,6 +36,15 @@ body {
   display: flex;
   justify-content: space-between;
   background: #592C28;
+  padding: 10px 100px;
+  color: white;
+}
+
+.footer {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  background: #B8BF7E;
   padding: 10px 100px;
   color: white;
 }
