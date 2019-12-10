@@ -3,11 +3,11 @@ module.exports = {
     // options...
     devServer: {
         useLocalIp: false,
-        public: 'tessmika.com:8080',
+        public: 'mcbridemanifest.com:8080',
         disableHostCheck: true,
         proxy: {
             '^/api': {
-                target: 'http://tessmika.com:4200',
+                target: 'http://mcbridemanifest.com:4200',
             },
         },
     }
